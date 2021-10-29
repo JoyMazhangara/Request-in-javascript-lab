@@ -66,12 +66,13 @@ sayHelloButton.addEventListener('mouseout', btnColorChangebk);
 
 // DO NOT EDIT FUNCTION
 const sayHello = () => {
-    axios.get('http://localhost:3000/say-hello').then((res) => {
+     axios.get('http://localhost:3000/say-hello').then((res) => {
         let helloText = document.getElementById('hello-text');
         helloText.style.display = 'block';
         helloText.style.backgroundColor = 'green';
         helloText.textContent = res.data;
     })
+    .catch((error) => console.log(error));
 }
 // DO NOT EDIT FUNCTION
 
@@ -95,7 +96,7 @@ sayHelloButton.addEventListener('click', sayHello);
 */ 
 const baseURL = `http://localhost:3000`
 const ohMy = () => {
-    axios
+    return axios
     .get(`${baseURL}/animals`)
     .then((response) => {
       console.log(response.data);
@@ -129,11 +130,12 @@ document.getElementById('animals-button').addEventListener('click', ohMy)
 
 const repeatMyParam = () => {
     let repeatText = document.getElementById('repeat-text')
-    axios
-    .get(`${baseURL}/repeat/${someparam}`)
+    return axios
+    .get(`${baseURL}/repeat/cheetah-girl-for-life`)
     .then((response) => {
       console.log(response.data);
       repeatText.textContent = response.data
+      repeatText.style.display = 'block';
       }
     )
     .catch((error) => console.log(error));
@@ -167,9 +169,17 @@ document.getElementById('repeat-button').addEventListener('click', repeatMyParam
     calls your function.
 */
 
-// CODE HERE
+function getRequest() {
+    return axios
+    .get(`${baseURL}/query-test?pizza=hi-my-name-is-joy`)
+    .then((response) => {
+      console.log(response.data);
+      }
+    )
+    .catch((error) => console.log(error));
+}
 
-
+document.getElementById('query-button').addEventListener('click', getRequest);
 
 ////////////////
 //INTERMEDIATE//
@@ -209,21 +219,37 @@ document.getElementById('repeat-button').addEventListener('click', repeatMyParam
 
 //PROBLEM 11
 /*
-    You are going to add the ability to POST to the server. You'll need to create a small form and write a function that makes a post request. Then you'll attach that function to the submit event on the form. We'll be creating a list of foods. 
+    You are going to add the ability to POST to the server. 
+    You'll need to create a small form and write a function 
+    that makes a post request. Then you'll attach that function 
+    to the submit event on the form. We'll be creating a list of
+    foods. 
 
-    In the index.html file inside of the client folder, create a form with one text input field and a button. The input field should have a placeholder that tells the user to enter a food. And the button should indicate that it will add food into a list. 
+    In the index.html file inside of the client folder, create
+     a form with one text input field and a button. The input 
+     field should have a placeholder that tells the user to 
+     enter a food. And the button should indicate that it will
+      add food into a list. 
 
     In this file (script.js), create a function called createFood. 
-    
-    Inside the function, select the input you just created in the HTML and save it to a variable called foodInput. 
-    
-    Next, create an object called body inside the function. It should have one key-value pair. The key should be newFood (make sure to match the case and spelling exactly) and the value should be the value of the food input. 
+    Inside the function, select the input you just created in the 
+    HTML and save it to a variable called foodInput. 
+    Next, create an object called body inside the function. 
+    It should have one key-value pair. The key should be 
+    newFood (make sure to match the case and spelling exactly) 
+    and the value should be the value of the food input. 
 
-    Now make an axios post request to /food. Inside the parentheses where you passed the URL in, pass in body as the second argument. 
+    Now make an axios post request to /food. Inside the 
+    parentheses where you passed the URL in, pass in body
+     as the second argument. 
 
-    Use a .then to handle the promise returned from the axios call. Pass a callback function to the .then. Inside that callback, console log the res.data. 
+    Use a .then to handle the promise returned from 
+    the axios call. Pass a callback function to the .then. 
+    Inside that callback, console log the res.data. 
 
-    Based on what we did earlier to display this type of data, write code that will display the response in your HTML document. 
+    Based on what we did earlier to display this type 
+    of data, write code that will display the response 
+    in your HTML document. 
 */
 
 // CODE HERE 
